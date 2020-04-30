@@ -1,15 +1,13 @@
-name: Reachability for $URL
+name: Reachability
 
 on: repository_dispatch
-
-env:
-  URL: ${{ github.event.client_payload.url || 'https://api.github.com' }} 
   
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+      URL: ${{ github.event.client_payload.url || 'https://api.github.com' }} 
     steps:
-    - run: curl -vL $URL
+    - name: Check ${{ URL }} 
+      run: curl -vL $URL
