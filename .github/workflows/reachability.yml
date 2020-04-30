@@ -4,10 +4,8 @@ on: repository_dispatch
   
 jobs:
 
-  build:
+  check:
     runs-on: ubuntu-latest
-    env:
-      URL: ${{ github.event.client_payload.url || 'https://api.github.com' }} 
+
     steps:
-    - name: Check ${{ URL }} 
-      run: curl -vL $URL
+    - run: curl -vL ${{ github.event.client_payload.url || 'https://api.github.com' }} 
